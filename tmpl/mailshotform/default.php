@@ -107,6 +107,10 @@ $toolsHelper = new ToolsHelper;
                                 <span class="fas fa-save" aria-hidden="true"></span>
                                 <?php echo Text::_('Save & Continue'); ?>
                             </button>
+                            <button type="submit" class="validate btn btn-info" name="test_send" onclick="this.form.task.value = 'mailshotform.testsend';">
+                                <span class="fas fa-envelope" aria-hidden="true"></span>
+                                <?php echo Text::_('Send Test'); ?>
+                            </button>
                         <?php endif; ?>
                         <a class="btn btn-danger"
                            href="<?php echo Route::_('index.php?option=com_ra_mailman&task=mailshotform.cancel'); ?>"
