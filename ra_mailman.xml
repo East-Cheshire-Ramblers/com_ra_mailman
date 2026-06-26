@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>webmaster@bigley.me.uk</authorEmail>
 	<authorUrl>https://ramblerseastcheshire.org.uk/</authorUrl>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<description>East Cheshire Ramblers mailman component.</description>
 	<namespace path="src">Ramblers\Component\Ra_mailman</namespace>
 
@@ -25,9 +25,25 @@
 	</files>
 
 	<administration>
+		<menu>RA Mailman</menu>
+		<submenu>
+			<menu link="option=com_ra_tools&amp;view=dashboard">Dashboard</menu>
+			<menu link="option=com_ra_mailman&amp;view=mail_lsts" view="mail_lsts">Mailing lists</menu>
+			<menu link="option=com_ra_mailman&amp;view=mailshots" view="mailshots">Mailshots</menu>
+			<menu link="option=com_ra_mailman&amp;view=subscriptions" view="subscriptions">Subscriptions</menu>
+			<menu link="option=com_ra_mailman&amp;view=profiles" view="profiles">MailMan users</menu>
+			<menu link="option=com_ra_mailman&amp;view=dataload" view="dataload">Import list of members</menu>
+		</submenu>
 		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
 			<filename>index.html</filename>
+			<folder>forms</folder>
+			<folder>languages</folder>
+			<folder>services</folder>
 			<folder>sql</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
 		</files>
 	</administration>
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" 
+               description="Search term"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+     <field name="record_type"
+         type="list"
+         label="Open/Closed"
+         description="Filter by list type"
+         class="js-select-submit-on-change"
+     >
+         <option value="">- Select type -</option>
+         <option value="O">Open</option>
+         <option value="C">Closed</option>
+     </field>
+
+     <field name="home_group_only"
+         type="list"
+         label="Home group only"
+         description="Filter by home group restriction"
+         class="js-select-submit-on-change"
+     >
+         <option value="">- Select home group only -</option>
+         <option value="1">Y</option>
+         <option value="0">N</option>
+     </field>
+
+        <!-- field name="state"
+               type="status"
+               label="COM_RA_MAILMAN_FILTER_STATE"
+               description="COM_RA_MAILMAN_FILTER_STATE_DESC"
+               onchange="this.form.submit();"
+        >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field -->     
+
+    </fields>
+
+    <fields name="list">
+
+        <field name="fullordering"
+               type="list"
+               label="COM_RA_MAILMAN_LIST_FULL_ORDERING"
+               description="COM_RA_MAILMAN_LIST_FULL_ORDERING_DESC"
+             class="js-select-submit-on-change"
+               default="a.id DESC"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.group_code ASC">Group code Ascending</option>
+            <option value="a.group_code DESC">Group code Descending</option>
+            <option value="a.name ASC">List Name Ascending</option>
+            <option value="a.name DESC">List Name Descending</option>
+            <option value="g.name ASC">Owner Ascending</option>
+            <option value="g.name DESC">Owner Descending</option>
+            <option value="a.record_type ASC">Type Ascending</option>
+            <option value="a.record_type DESC">Type Descending</option>
+            <option value="a.home_group_only ASC">Home group only Ascending</option>
+            <option value="a.home_group_only DESC">Home group only Descending</option>
+            <!-- option value="a.state ASC">Status Ascending</option>
+            <option value="a.state DESC">Status Descending</option -->
+        </field>
+
+       <field name="limit"
+               type="limitbox"
+               label="COM_RA_MAILMAN_LIST_LIMIT"
+               description="COM_RA_MAILMAN_LIST_LIMIT_DESC"
+               class="input-mini js-select-submit-on-change"
+               default="25"
+        />
+
+    </fields>
+
+</form>
