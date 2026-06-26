@@ -1,11 +1,14 @@
 <?php
 /**
- * @version    4.5.7
+ * @version    4.5.3
  * @package    com_ra_mailman
  * @author     Charlie Bigley <webmaster@bigley.me.uk>
  * @copyright  2023 Charlie Bigley
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
- * 19/10/25 CB Breadcrumbs
+ * 22/08/24 CB correct value of $self
+ * 12/02/25 CB user $this->user from view
+ * 28/05/25 CB correct for search on owner name
+ * 03/09/25 CB Breadcrumbs
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -31,16 +34,10 @@ $listDirn = $this->state->get('list.direction');
 $objMailHelper = new Mailhelper;
 $self = 'index.php?option=com_ra_mailman&view=list_select';
 $self .= '&user_id=' . $this->user_id;
-$breadcrumbs = $this->objHelper->buildLink('aindex.php', 'Main menu');
-$breadcrumbs .= '>' . $this->objHelper->buildLink('index.php?option==com_ra_mailman&view=mail_lsts', 'Mailing lists');
+$breadcrumbs = $this->objHelper->buildLink('administrator/index.php', 'Home Dashboard');
+$breadcrumbs .= '>' . $this->objHelper->buildLink('administrator/index.php?option=com_ra_tools&view=dashboard', 'RA Dashboard');
+$breadcrumbs .= '>' . $this->objHelper->buildLink('administrator/index.php?option==com_ra_mailman&view=profiles', 'List users');
 echo $breadcrumbs;
-
-echo '<h2>';
-// Cannot use this buton here as array of ids will not be passed unless
-// a standard toolbar button is being display (or bespoke javascript provided(
-//$target = 'index.php?option=com_ra_mailman&task=user_select.subscribeAll';
-//echo $this->objHelper->buildButton($target, 'sunset');
-echo 'Select subscriptions for ' . $this->user_name . '</h2>';
 ?>
 
 <form action="<?php echo Route::_($self); ?>" method="post"
@@ -57,6 +54,12 @@ echo 'Select subscriptions for ' . $this->user_name . '</h2>';
 
 
                             <?php
+                            /*
+                              <th class="w-1 text-center">
+                              <input type="checkbox" autocomplete="off" class="form-check-input" name="checkall-toggle" value=""
+                              title="<?php echo Text::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)"/>
+                              </th>
+                             */
                             echo '<th class="left">';
                             echo JHtml::_('searchtools.sort', 'Group', 'a.group_code', $listDirn, $listOrder);
                             echo '</th>';
@@ -66,7 +69,7 @@ echo 'Select subscriptions for ' . $this->user_name . '</h2>';
                             echo '</th>';
 
                             echo '<th class="left">';
-                            echo JHtml::_('searchtools.sort', 'Owner', 'g.name', $listDirn, $listOrder);
+                            echo JHtml::_('searchtools.sort', 'Owner', 'p.preferred_name', $listDirn, $listOrder);
                             echo '</th>';
 
                             echo '<th class="left">';
@@ -94,7 +97,7 @@ echo 'Select subscriptions for ' . $this->user_name . '</h2>';
                     <tbody <?php if (!empty($saveOrder)) : ?> class="js-draggable" data-url="<?php echo $saveOrderingUrl; ?>" data-direction="<?php echo strtolower($listDirn); ?>" <?php endif; ?>>
                         <?php
                         foreach ($this->items as $i => $item) {
-                            $target = 'index.php?option=com_ra_mailman&record_type=1';
+                            $target = 'administrator/index.php?option=com_ra_mailman&record_type=1';
                             $target .= '&user_id=' . $this->user_id . '&list_id=' . $item->id;
                             $target .= '&callback=list_select&task=mail_lst.';
 

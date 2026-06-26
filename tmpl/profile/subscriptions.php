@@ -84,7 +84,7 @@ if ($objHelper->rows == 0) {
             }
         }
         // $details .= $objHelper->buildButton($target_renew . $row->list_id, 'Renew');
-        $objTable->add_item($details);
+        $objTable->add_item($details === '' ? '&nbsp;' : $details);
         $objTable->generate_line();
         $count++;
     }

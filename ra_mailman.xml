@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+	<name>com_ra_mailman</name>
+	<author>East Cheshire Ramblers</author>
+	<creationDate>2026-06-25</creationDate>
+	<copyright>Copyright (C) East Cheshire Ramblers. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>webmaster@bigley.me.uk</authorEmail>
+	<authorUrl>https://ramblerseastcheshire.org.uk/</authorUrl>
+	<version>1.0.10</version>
+	<description>East Cheshire Ramblers mailman component.</description>
+	<namespace path="src">Ramblers\Component\Ra_mailman</namespace>
+
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+
+	<files folder=".">
+		<folder>forms</folder>
+		<folder>languages</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<administration>
+		<menu>RA Mailman</menu>
+		<submenu>
+			<menu link="option=com_ra_tools&amp;view=dashboard">Dashboard</menu>
+			<menu link="option=com_ra_mailman&amp;view=mail_lsts" view="mail_lsts">Mailing lists</menu>
+			<menu link="option=com_ra_mailman&amp;view=mailshots" view="mailshots">Mailshots</menu>
+			<menu link="option=com_ra_mailman&amp;view=subscriptions" view="subscriptions">Subscriptions</menu>
+			<menu link="option=com_ra_mailman&amp;view=profiles" view="profiles">MailMan users</menu>
+			<menu link="option=com_ra_mailman&amp;view=dataload" view="dataload">Import list of members</menu>
+		</submenu>
+		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>index.html</filename>
+			<folder>forms</folder>
+			<folder>languages</folder>
+			<folder>services</folder>
+			<folder>sql</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
+		</files>
+	</administration>
+
+	<updateservers>
+		<server type="extension" priority="1" name="RA Mailman Updates">https://raw.githubusercontent.com/East-Cheshire-Ramblers/com_ra_mailman/joomla-auto-update/updates/com_ra_mailman.xml</server>
+	</updateservers>
+</extension>
