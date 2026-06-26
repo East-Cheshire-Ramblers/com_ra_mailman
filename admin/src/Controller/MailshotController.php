@@ -123,6 +123,35 @@ class MailshotController extends FormController {
         return $return;
     }
 
+    public function testsend($key = null, $urlVar = null) {
+        $return = parent::save($key, $urlVar);
+        $target = $this->getEditRedirectTarget();
+
+        if ($return) {
+            $data = $this->app->input->get('jform', array(), 'array');
+            $mailshot_id = (int) ($data['id'] ?? 0);
+
+            if ($mailshot_id === 0) {
+                $mailshot_id = (int) $this->app->getUserState('com_ra_mailman.edit.mailshot.id');
+            }
+
+            if ($mailshot_id > 0) {
+                $mailHelper = new Mailhelper;
+                if ($mailHelper->sendDraft($mailshot_id)) {
+                    $this->app->enqueueMessage($mailHelper->message, 'message');
+                } else {
+                    $this->app->enqueueMessage($mailHelper->message ?: 'Unable to send test email', 'warning');
+                }
+            } else {
+                $this->app->enqueueMessage('Unable to identify the saved mailshot for test send', 'warning');
+            }
+        }
+
+        $this->setRedirect(Route::_($target, false));
+
+        return $return;
+    }
+
     private function isApplyTask($task) {
         return $task === 'apply' || str_ends_with($task, '.apply');
     }
