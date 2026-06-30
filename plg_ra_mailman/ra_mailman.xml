@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="webservices" method="upgrade">
+	<name>PLG_WEBSERVICES_RA_MAILMAN</name>
+	<author>East Cheshire Ramblers</author>
+	<creationDate>2026-06-30</creationDate>
+	<copyright>Copyright (C) East Cheshire Ramblers. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>webmaster@bigley.me.uk</authorEmail>
+	<authorUrl>https://ramblerseastcheshire.org.uk/</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_WEBSERVICES_RA_MAILMAN_XML_DESCRIPTION</description>
+	<namespace path="src">Ramblers\Plugin\WebServices\Ra_mailman</namespace>
+	<files>
+		<folder plugin="ra_mailman">services</folder>
+		<folder>src</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/plg_webservices_ra_mailman.ini</language>
+		<language tag="en-GB">language/en-GB/plg_webservices_ra_mailman.sys.ini</language>
+	</languages>
+</extension>

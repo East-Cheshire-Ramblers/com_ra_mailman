@@ -10,6 +10,7 @@
 	<version>1.0.17</version>
 	<description>East Cheshire Ramblers mailman component.</description>
 	<namespace path="src">Ramblers\Component\Ra_mailman</namespace>
+	<namespace path="api/src">Ramblers\Component\Ra_mailman\Api</namespace>
 
 	<install>
 		<sql>
@@ -46,6 +47,13 @@
 			<folder>tmpl</folder>
 		</files>
 	</administration>
+
+	<api>
+		<files folder="api">
+			<folder>services</folder>
+			<folder>src</folder>
+		</files>
+	</api>
 
 	<updateservers>
 		<server type="extension" priority="1" name="RA Mailman Updates">https://raw.githubusercontent.com/East-Cheshire-Ramblers/com_ra_mailman/main/updates/com_ra_mailman.xml</server>
